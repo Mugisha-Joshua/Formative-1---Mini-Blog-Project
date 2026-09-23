@@ -1,3 +1,4 @@
+import withLogger from '../hoc/withLogger';
 import type { Post as PostType } from '../types/post';
 import Post from './Post';
 
@@ -38,4 +39,4 @@ function PostList() {
   );
 }
 
-export default PostList;
+export default withLogger(PostList);
