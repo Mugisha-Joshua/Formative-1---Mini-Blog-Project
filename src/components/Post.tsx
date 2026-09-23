@@ -6,11 +6,13 @@ interface PostProps {
   post: PostType;
 }
 
-const Card = styled.article`
+const FEATURED_AUTHOR = 'Mugisha Joshua';
+
+const Card = styled.article<{ $featured: boolean }>`
   margin-bottom: 1rem;
   padding: 1.25rem;
   border-radius: 8px;
-  background: #fff;
+  background: ${({ $featured }) => ($featured ? '#e0f2fe' : '#fff')};
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 `;
 
@@ -27,7 +29,7 @@ const Meta = styled.p`
 
 function Post({ post }: PostProps) {
   return (
-    <Card>
+    <Card $featured={post.author === FEATURED_AUTHOR}>
       <Title>{post.title}</Title>
       <Meta>
         By {post.author} on {new Date(post.date).toLocaleDateString()}
